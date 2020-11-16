@@ -1,11 +1,21 @@
 import { Module } from '@nestjs/common';
-import { PlayersController } from './players/players.controller';
+import { MongooseModule } from '@nestjs/mongoose';
 import { PlayersModule } from './players/players.module';
-import { PlayersService } from './players/players.service';
 
 @Module({
-  imports: [PlayersModule],
-  controllers: [PlayersController],
-  providers: [PlayersService],
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb+srv://omnistack:JE8eb8dmTMhFH28@smartranking.xagdp.mongodb.net/smartranking?retryWrites=true&w=majority',
+      {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+      },
+    ),
+    PlayersModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
